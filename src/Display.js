@@ -1,15 +1,13 @@
 import React from 'react';
 
-const display = (props) => {
-    const style = {
-        backgroundColor : "dodgerblue",
-        textAlign : "center",
-        color : "white"
-    };
+const style = {
+    backgroundColor : "dodgerblue",
+    textAlign : "center",
+    color : "white"
+};
 
-    return(
-        <div style={style}>{props.display}</div>
-    );
-}
+const Display = (props) => (
+    <div style={style}>{props.display}</div>
+)
 
-export default display;
+export default Display;
