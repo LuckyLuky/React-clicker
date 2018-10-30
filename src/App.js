@@ -36,33 +36,22 @@ class App extends Component {
       return {"houses" : prevState.houses + 1, "clicks" : prevState.clicks - cost};
     });
   }
- 
 
   render() {
-
-    const upgrade = (clicks) => {
-      if(this.goals[0] <= clicks){
-        return <button className="button" onClick={this.addMultiplier}>Increase your multiplier! (Resets your balance!)</button>;
-      } else {
-        return null;
-      }
-    };
-
-    const buyHouse = (clicks) => {
-      if(clicks >= this.houseCost[0]){
-        return <button className="button" onClick={this.addHouse}>Buy house! ({this.houseCost[0]})</button>;
-      } else {
-        return null;
-      } 
-    };
-
     return (
       <div className="App">
         <Display display={"Balance: " + this.state.clicks}/>
         <Display display={"Your multiplier: " + this.state.multiplier}/>
         <button className="button" onClick={this.addClick}>Make money!</button>
-        {upgrade(this.state.clicks)}
-        {buyHouse(this.state.clicks)}
+
+        {(this.goals[0] <= this.state.clicks) &&
+          <button className="button" onClick={this.addMultiplier}>Increase your multiplier! (Resets your balance!)</button>
+        }
+
+        {(this.state.clicks >= this.houseCost[0]) &&
+          <button className="button" onClick={this.addHouse}>Buy house! ({this.houseCost[0]})</button>
+        }
+
         <Houses amount={this.state.houses}/>
       </div>
     );
